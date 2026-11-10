@@ -1,0 +1,26 @@
+{# Reel 17.5s–19.0s "Products": each product is a live 3D model on a spotlit plinth. #}
+<section class="shop theme-dark" id="shop" data-section="shop" aria-labelledby="shop-title">
+    <header class="section-head">
+        <p class="eyebrow mono">06 — The shelf</p>
+        <h2 id="shop-title" class="h2">What your barber <strong>used on you.</strong></h2>
+        <p class="section-head__lede">Pick it up at the chair or have it bagged for your next visit.</p>
+    </header>
+
+    <div class="products">
+        {% for product in products %}
+            <article class="product" data-product="{{ product.id }}">
+                <div class="product__stage" data-product-stage="{{ product.model }}" data-cursor="Spin" aria-hidden="true">
+                    <span class="product__cone"></span>
+                </div>
+                <footer class="product__meta">
+                    <div>
+                        <h3>{{ product.name }}</h3>
+                        <p class="mono">{{ product.size }}</p>
+                    </div>
+                    <span class="product__price">${{ product.price }}</span>
+                    <button class="product__add mono" type="button" data-add-product="{{ product.id }}" data-product-name="{{ product.name }}">Add</button>
+                </footer>
+            </article>
+        {% endfor %}
+    </div>
+</section>

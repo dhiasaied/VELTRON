@@ -1,0 +1,15 @@
+{# Reel 18.5s–19.5s: brushed-metal card on the left that tilts and flips; amounts + CTA on the right. #}
+<section class="gift theme-dark" id="gift" data-section="gift" aria-labelledby="gift-title">
+    <div class="gift__stage" data-anchor="gift" data-cursor="Tilt" aria-hidden="true"></div>
+    <div class="gift__copy">
+        <p class="eyebrow mono">07 — Gift cards</p>
+        <h2 id="gift-title" class="h2">A chair, <strong>gift-wrapped.</strong></h2>
+        <p class="gift__lede">Any cut, any barber, never expires. Sent by email with a code they book with.</p>
+        <div class="amounts" role="radiogroup" aria-label="Gift amount">
+            {% for amount in giftAmounts %}
+                <button type="button" role="radio" class="amount{{ amount == 100 ? ' is-active' : '' }}" aria-checked="{{ amount == 100 ? 'true' : 'false' }}" data-gift-amount="{{ amount }}">${{ amount }}</button>
+            {% endfor %}
+        </div>
+        <button class="btn btn--light" type="button" data-gift-open data-magnetic data-cursor="Gift">Send a gift card <span class="btn__circle" aria-hidden="true">→</span></button>
+    </div>
+</section>

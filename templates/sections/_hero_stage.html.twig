@@ -1,0 +1,40 @@
+{#
+  Hero (reel 3.0s–7.0s). The sentence runs into the wordmark: "You pick the cut. Welcome to" → vel tron.
+  The thin word sits behind the 3D chair, the bold word in front of it.
+#}
+<div class="stage" id="top">
+    <div class="stage__pin" data-anchor="chair" aria-hidden="true">
+        <div class="stage__glow" data-light-glow></div>
+    </div>
+
+    <section class="hero" data-section="hero" aria-labelledby="hero-title">
+        <h1 id="hero-title" class="hero__title" data-reveal>You pick the cut.<br><strong>Welcome to</strong><span class="sr-only"> VELTRON.</span></h1>
+
+        <div class="hero__type" aria-hidden="true">
+            <span class="hero__word hero__word--thin" data-lit data-hero-word="thin">vel</span>
+        </div>
+        <div class="hero__type hero__type--front" aria-hidden="true">
+            <span class="hero__word hero__word--bold" data-lit data-hero-word="bold">tron</span>
+        </div>
+
+        <aside class="hero__next mono" data-reveal>
+            {% if openNow %}<span class="dot dot--live"></span> Open now{% else %}<span class="dot"></span> Closed now{% endif %}
+            {% if nextFree %} · Next chair <strong data-next-free>{{ nextFree.label }}{{ nextFree.dayLabel != 'today' ? ' ' ~ nextFree.dayLabel : '' }}</strong>{% endif %}
+        </aside>
+
+        <div class="hero__copy">
+            <p class="hero__lede" data-reveal>Fades, tapers and hot-towel shaves on Bedford Ave. <strong>Book your barber in under a minute.</strong></p>
+            <div class="hero__actions" data-reveal>
+                <button class="btn btn--light" type="button" data-book data-magnetic data-cursor="Book">Book a chair <span class="btn__circle" aria-hidden="true">→</span></button>
+                <a class="btn btn--ghost" href="#services" data-magnetic>See prices</a>
+            </div>
+            <p class="hero__rating mono" data-reveal><span class="stars" aria-hidden="true">★★★★★</span> 4.9 · 312 Google reviews</p>
+        </div>
+
+        <div class="hero__hint mono" data-reveal>
+            <span class="hero__hint-icon" aria-hidden="true"></span>
+            <span class="only-hover">Move — the light follows you</span>
+            <span class="only-touch">Drag — the light follows you</span>
+        </div>
+    </section>
+</div>

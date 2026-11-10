@@ -1,0 +1,23 @@
+{# Reel 19.5s–21.5s: the rating counts up, a stack of review cards deals one at a time. #}
+<section class="reviews theme-light" id="reviews" data-section="reviews" aria-labelledby="reviews-title">
+    <p class="eyebrow mono">08 — Said in the chair</p>
+    <div class="reviews__grid">
+        <div class="reviews__score">
+            <h2 id="reviews-title" class="sr-only">Reviews</h2>
+            <span class="reviews__n" data-count="4.9" data-decimals="1" data-from="3.0">4.9</span>
+            <p class="mono"><span class="stars" aria-hidden="true">★★★★★</span> · 312 Google reviews</p>
+        </div>
+        <div class="deck" data-deck>
+            {% for review in reviews %}
+                <figure class="deck__card" data-deck-card>
+                    <blockquote>“{{ review.quote }}”</blockquote>
+                    <figcaption class="mono">{{ review.author }} · {{ review.meta }}</figcaption>
+                </figure>
+            {% endfor %}
+            <div class="deck__nav mono">
+                <span><b data-deck-index>1</b> / {{ reviews|length }}</span>
+                <button type="button" data-deck-next data-cursor="Next">Next →</button>
+            </div>
+        </div>
+    </div>
+</section>

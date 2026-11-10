@@ -1,0 +1,11 @@
+{# Reel 22.5s–23.0s: questions as an accordion under the map. #}
+<section class="faq theme-dark" id="faq" data-section="faq" aria-label="Questions">
+    <div class="faq__list" data-faq>
+        {% for item in faq %}
+            <details class="faq__item"{{ loop.first ? ' open' : '' }}>
+                <summary>{{ item.q }}<span class="faq__icon" aria-hidden="true"></span></summary>
+                <div class="faq__a"><p>{{ item.a }}</p></div>
+            </details>
+        {% endfor %}
+    </div>
+</section>

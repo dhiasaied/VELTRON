@@ -1,0 +1,15 @@
+/* Opening sequence: hair field, wordmark, clipper sweep (see assets/js/ui/Intro.js). */
+.intro { position: fixed; inset: 0; z-index: 200; background: #060606; overflow: hidden; }
+.intro__hair, .intro__fx { position: absolute; inset: 0; width: 100%; height: 100%; }
+.intro__fx { z-index: 2; }
+.intro__type {
+    position: absolute; inset: 0; z-index: 3; display: grid; place-content: center; text-align: center;
+    font-family: var(--display); letter-spacing: -0.07em; line-height: .86; color: #f4f2ec; pointer-events: none;
+}
+.intro__word { display: block; justify-self: center; width: max-content; font-size: clamp(4.5rem, 15vw, 17rem); line-height: .8; padding: 0 .04em .14em; will-change: transform; transform-origin: 0 0; }
+.intro__word--thin { font-weight: 200; }
+.intro__word--bold { font-weight: 800; }
+.intro__corner { position: absolute; z-index: 3; bottom: 22px; color: rgba(244,242,236,.6); display: flex; gap: 18px; }
+.intro__corner--bl { left: var(--gutter); }
+.intro__corner--br { right: var(--gutter); }
+body:not(.is-loading) .intro { pointer-events: none; }

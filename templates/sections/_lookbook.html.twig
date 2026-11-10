@@ -1,0 +1,62 @@
+{#
+  Reel 14.0s–16.0s "See the back before you sit": filter by barber, each cut shown front and back.
+  Photos live in public/lookbook/{id}-front.jpg / {id}-back.jpg; when a pair is missing the card
+  falls back to a 3D bust rendered in the browser (assets/js/world/Bust.js).
+#}
+<section class="lookbook theme-dark" id="lookbook" data-section="lookbook" aria-labelledby="lookbook-title">
+    <header class="section-head section-head--split">
+        <div>
+            <p class="eyebrow mono">04 — The lookbook</p>
+            <h2 id="lookbook-title" class="h2">See the back <strong>before you sit.</strong></h2>
+            <p class="section-head__lede">Every cut photographed front and back. Hover a card — or tap it — to turn the chair around.</p>
+        </div>
+        <div class="lookbook__tools">
+            <p class="lookbook__count mono"><b data-look-count>{{ lookbook|length }}</b> cuts · {{ barbers|length }} barbers</p>
+            <div class="chips" role="tablist" aria-label="Filter by barber">
+                <button class="chip is-active" type="button" role="tab" aria-selected="true" data-look-filter="all">All</button>
+                {% for barber in barbers %}
+                    <button class="chip" type="button" role="tab" aria-selected="false" data-look-filter="{{ barber.slug }}">
+                        <span class="chip__dot" style="--tone: {{ barber.tone }}" aria-hidden="true"></span>
+                        {{ barber.name }}
+                    </button>
+                {% endfor %}
+            </div>
+        </div>
+    </header>
+
+    <div class="looks" data-looks>
+        {% for look in lookbook %}
+            {% set barber = barbers|filter(b => b.slug == look.barber)|first %}
+            {% set service = services|filter(s => s.id == look.service)|first %}
+            {% set photo = lookPhotos[look.id] ?? false %}
+            <article class="look{{ photo ? ' is-ready' : '' }}" data-look="{{ look.id }}"{{ photo ? ' data-look-photo' : '' }} data-look-barber="{{ look.barber }}" data-look-style="{{ look.style }}" data-cursor="Turn">
+                <div class="look__media" data-look-media>
+                    <div class="look__toggle mono" role="group" aria-label="View">
+                        <button type="button" class="is-active" data-look-view="front" aria-pressed="true">Front</button>
+                        <button type="button" data-look-view="back" aria-pressed="false">Back</button>
+                    </div>
+                    <span class="look__index mono" aria-hidden="true">{{ '%02d'|format(loop.index) }} / {{ '%02d'|format(lookbook|length) }}</span>
+                    <div class="look__frame" data-look-frame>
+                        <img class="look__img look__img--front" data-look-img="front" alt="{{ look.name }}, front view" width="1200" height="1500" decoding="async"{% if photo %} src="{{ asset('lookbook/' ~ look.id ~ '-front.jpg') }}" loading="lazy"{% endif %}>
+                        <img class="look__img look__img--back" data-look-img="back" alt="{{ look.name }}, back view" width="1200" height="1500" decoding="async"{% if photo %} data-src="{{ asset('lookbook/' ~ look.id ~ '-back.jpg') }}"{% endif %}>
+                    </div>
+                    <span class="look__light" aria-hidden="true"></span>
+                    <span class="look__skeleton" aria-hidden="true"></span>
+                    <div class="look__specs mono" aria-hidden="true">
+                        <span>{{ service.minutes }} min</span>
+                        <span>Chair #{{ barber.chair }}</span>
+                    </div>
+                </div>
+                <footer class="look__meta">
+                    <div>
+                        <h3>{{ look.name }}</h3>
+                        <button class="look__book mono" type="button" data-book data-book-service="{{ look.service }}" data-book-barber="{{ look.barber }}">
+                            Book this cut · {{ barber.name }} <span aria-hidden="true">↗</span>
+                        </button>
+                    </div>
+                    <span class="look__price">${{ look.price }}</span>
+                </footer>
+            </article>
+        {% endfor %}
+    </div>
+</section>

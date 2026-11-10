@@ -1,0 +1,30 @@
+{# Reel 23.0s–24.0s: hiring strip, the live next-free line, then the wordmark in a fading grey. #}
+<footer class="footer" data-section="footer">
+    <div class="hiring">
+        <span class="hiring__icon" aria-hidden="true">✂</span>
+        <p>Now hiring: <strong>two chairs to rent</strong> — loyal clientele, your hours, your book.</p>
+        <a class="btn btn--ghost btn--sm" href="mailto:chairs@veltron.example?subject=Chair%20rental">Apply</a>
+    </div>
+
+    <div class="footer__cta">
+        <h2 class="footer__line">
+            {% if nextFree %}
+                The chair is free <strong data-footer-next>{{ nextFree.dayLabel == 'today' ? 'at ' ~ nextFree.label : nextFree.dayLabel ~ ' at ' ~ nextFree.label }}.</strong>
+            {% else %}
+                The book is full. <strong>Check back tomorrow.</strong>
+            {% endif %}
+        </h2>
+        <button class="btn btn--light" type="button" data-book {% if nextFree %}data-book-date="{{ nextFree.date }}"{% endif %} data-magnetic data-cursor="Book">Book a chair <span class="btn__circle" aria-hidden="true">→</span></button>
+    </div>
+
+    <div class="footer__type" aria-hidden="true" data-footer-type>veltron</div>
+
+    <div class="footer__bar mono">
+        <nav aria-label="Footer">
+            <a href="#services">Services</a><a href="#barbers">Barbers</a><a href="#club">Club</a><a href="#shop">Shop</a><a href="#visit">Visit</a><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+        </nav>
+        <span>214 Bedford Ave · Brooklyn · © {{ 'now'|date('Y') }} VELTRON</span>
+    </div>
+    <p class="footer__credits mono">Photography via <a href="https://unsplash.com/license" target="_blank" rel="noopener">Unsplash</a>:
+        {% for c in photoCredits %}<a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.name }}</a>{{ not loop.last ? ', ' : '' }}{% endfor %}</p>
+</footer>

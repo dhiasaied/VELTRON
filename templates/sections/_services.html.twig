@@ -1,0 +1,23 @@
+{# Price list (reel 7.0s–10.0s): hovering a row swaps the 3D tool that follows the cursor. #}
+<section class="services theme-light" id="services" data-section="services" data-anchor="services" aria-labelledby="services-title">
+    <header class="section-head">
+        <p class="eyebrow mono">01 — The menu</p>
+        <h2 id="services-title" class="h2">Every cut <strong>has a number.</strong></h2>
+        <p class="section-head__lede">Prices include the wash, the hot towel on the neck and a line-up on the way out. No surprises at the chair.</p>
+    </header>
+
+    <ul class="rows" data-rows>
+        {% for service in services %}
+            <li class="row" data-service-row data-tool="{{ service.tool }}" data-cursor="Book">
+                <span class="row__num">#{{ loop.index0 }}</span>
+                <span class="row__name">
+                    <strong>{{ service.name }}</strong>
+                    <small>{{ service.blurb }}</small>
+                </span>
+                <span class="row__time mono">{{ service.minutes }} min</span>
+                <span class="row__price">${{ service.price }}</span>
+                <button class="row__book" type="button" data-book data-book-service="{{ service.id }}">Book<span class="sr-only"> {{ service.name }}</span></button>
+            </li>
+        {% endfor %}
+    </ul>
+</section>

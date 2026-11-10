@@ -1,0 +1,34 @@
+{# Reel 12.0s–14.0s: four mirror stations under hanging lamps; the hovered one widens and lights up. #}
+<section class="barbers theme-dark" id="barbers" data-section="barbers" aria-labelledby="barbers-title">
+    <header class="section-head">
+        <p class="eyebrow mono">03 — The chairs</p>
+        <h2 id="barbers-title" class="h2">Four mirrors. <strong>Pick yours.</strong></h2>
+        <p class="section-head__lede">Each barber has his own station and his own book. Pick a mirror to see when it’s free.</p>
+    </header>
+
+    <div class="mirrors" data-mirrors>
+        {% for barber in barbers %}
+            <article class="mirror{{ loop.first ? ' is-open' : '' }}" data-mirror="{{ barber.slug }}" style="--tone: {{ barber.tone }}" tabindex="0" aria-label="{{ barber.name }}, {{ barber.role }}">
+                <span class="mirror__lamp" aria-hidden="true"><i></i></span>
+                <div class="mirror__glass" aria-hidden="true">
+                    {% if barberPhotos[barber.slug] ?? false %}
+                        <img class="mirror__bust mirror__bust--photo" data-mirror-photo="{{ barber.slug }}" src="{{ asset('barbers/' ~ barber.slug ~ '.jpg') }}" alt="{{ barber.name }} at chair {{ barber.chair }}" loading="lazy" decoding="async" width="1000" height="1400">
+                    {% else %}
+                        <img class="mirror__bust" data-mirror-bust="{{ barber.slug }}" alt="" hidden>
+                    {% endif %}
+                    <span class="mirror__initial">{{ barber.name|first }}</span>
+                </div>
+                <div class="mirror__meta">
+                    <span class="mirror__chair mono">#{{ barber.chair }}</span>
+                    <h3 class="mirror__name">{{ barber.name }}</h3>
+                    <p class="mirror__role mono">{{ barber.role }} · {{ barber.years }} yrs</p>
+                    <div class="mirror__more">
+                        <p>{{ barber.signature }}</p>
+                        <p class="mono mirror__free"><span class="dot dot--live"></span> Next free <b data-barber-next="{{ barber.slug }}">…</b></p>
+                        <button class="btn btn--light btn--sm" type="button" data-book data-book-barber="{{ barber.slug }}" data-cursor="Book">Book with {{ barber.name }} →</button>
+                    </div>
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+</section>

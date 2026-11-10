@@ -1,0 +1,23 @@
+{# Reel 16.0s–17.5s "Memberships. Income every month.": three plans, the middle one raised and dark. #}
+<section class="club theme-light" id="club" data-section="club" aria-labelledby="club-title">
+    <header class="section-head">
+        <p class="eyebrow mono">05 — The club</p>
+        <h2 id="club-title" class="h2">Your cut, <strong>on a schedule.</strong></h2>
+        <p class="section-head__lede">A fade holds about three weeks. Members keep a standing chair and pay less than walking in.</p>
+    </header>
+
+    <div class="plans" data-plans>
+        {% for plan in plans %}
+            <article class="plan{{ plan.featured ? ' plan--featured' : '' }}" data-plan="{{ plan.id }}">
+                {% if plan.featured %}<span class="plan__tag mono">Most booked</span>{% endif %}
+                <p class="plan__name mono">{{ plan.name }}</p>
+                <p class="plan__price"><b>${{ plan.price }}</b><span>/month</span></p>
+                <ul class="plan__perks">
+                    {% for perk in plan.perks %}<li>{{ perk }}</li>{% endfor %}
+                </ul>
+                <p class="plan__visit mono">Per visit <b data-count="{{ (plan.price / plan.visits)|round(0, 'floor') }}" data-prefix="$">$0</b></p>
+                <button class="btn {{ plan.featured ? 'btn--light' : 'btn--dark' }} btn--sm" type="button" data-join-plan="{{ plan.id }}" data-plan-name="{{ plan.name }}">Join the club <span class="btn__circle" aria-hidden="true">↗</span></button>
+            </article>
+        {% endfor %}
+    </div>
+</section>

@@ -1,0 +1,21 @@
+<div class="drawer" data-drawer aria-hidden="true">
+    <div class="drawer__scrim" data-drawer-close></div>
+    <aside class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title" tabindex="-1">
+        <header class="drawer__head">
+            <button class="drawer__back mono" type="button" data-drawer-back aria-label="Previous step">← Back</button>
+            <span class="drawer__step mono" data-drawer-step>Step 1 / 4</span>
+            <button class="drawer__x" type="button" data-drawer-close aria-label="Close booking">✕</button>
+        </header>
+        <h2 class="drawer__title" id="drawer-title" data-drawer-title>Pick a cut</h2>
+        <div class="drawer__progress" aria-hidden="true"><span data-drawer-progress></span></div>
+
+        <div class="drawer__body" data-drawer-body>
+            {# Step panes rendered by assets/js/ui/BookingDrawer.js #}
+        </div>
+
+        <footer class="drawer__foot">
+            <div class="drawer__summary mono" data-drawer-summary>—</div>
+            <button class="btn btn--light" type="button" data-drawer-next disabled>Next <span class="btn__arrow">→</span></button>
+        </footer>
+    </aside>
+</div>

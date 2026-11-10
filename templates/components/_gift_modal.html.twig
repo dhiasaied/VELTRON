@@ -1,0 +1,26 @@
+<div class="modal" data-gift-modal aria-hidden="true">
+    <div class="modal__scrim" data-gift-close></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="gift-modal-title" tabindex="-1">
+        <button class="drawer__x modal__x" type="button" data-gift-close aria-label="Close">✕</button>
+        <div data-gift-form-wrap>
+            <p class="eyebrow mono">Gift card · <span data-gift-modal-amount>$100</span></p>
+            <h2 class="drawer__title" id="gift-modal-title">Who’s getting the chair?</h2>
+            <form class="form" data-gift-form novalidate>
+                <input type="hidden" name="amount" value="100">
+                <label class="field"><span>From</span><input name="fromName" autocomplete="name" required maxlength="80"><em data-error="fromName"></em></label>
+                <label class="field"><span>For</span><input name="toName" required maxlength="80"><em data-error="toName"></em></label>
+                <label class="field"><span>Their email</span><input name="toEmail" type="email" autocomplete="off" required maxlength="180"><em data-error="toEmail"></em></label>
+                <label class="field"><span>A line for the card <i>(optional)</i></span><textarea name="message" rows="2" maxlength="280"></textarea><em data-error="message"></em></label>
+                <button class="btn btn--light btn--block" type="submit">Send the gift <span class="btn__arrow">→</span></button>
+                <p class="mono small muted">Demo shop: no payment is taken, the code is generated and stored.</p>
+            </form>
+        </div>
+        <div class="gift-done" data-gift-done hidden>
+            <p class="eyebrow mono">Sent</p>
+            <h2 class="drawer__title">Wrapped and on its way.</h2>
+            <p class="gift-done__code mono" data-gift-code>GIFT-XXXXXXXX</p>
+            <p data-gift-done-text></p>
+            <button class="btn btn--ghost btn--block" type="button" data-gift-close>Done</button>
+        </div>
+    </div>
+</div>
